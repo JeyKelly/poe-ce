@@ -4,8 +4,7 @@
 
 ![](https://img.shields.io/badge/Maphack-3.14.0-brightgreen)  
 
-> *3.15 up for leveling but not everything works yet will fix later
-> This for will give you a free update for 3.14.. and will be updated for the following leagues for free as well
+> *3.15 updated 
 >
 > 
 ========
