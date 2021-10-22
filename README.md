@@ -2,11 +2,10 @@
 # poe-ce: Maphack, zoomhack, Light, and more  
 
 
-![](https://img.shields.io/badge/Maphack-3.14.0-brightgreen)  
+![](https://img.shields.io/badge/Maphack-3.16.0-brightgreen)  
 
-> *3.15 updated 
-
-if the files are not updated and you need to do it yourself quickly after a patch for some reason and it's only the distance fog crashing : try to allocate more memory to the fullaccess line in the script (i.e if it says something like FULLACCESS(PathOfExile.exe+1CF5386,4), change 4 to 100000 or something similar. The script tries to write memory to a read-only section and the game crashes.
+> *3.16 updated 
+fog distance probably don't work, but maphack will for leveling
 > 
 ========
 
