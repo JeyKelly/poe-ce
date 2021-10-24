@@ -4,8 +4,7 @@
 
 ![](https://img.shields.io/badge/Maphack-3.16.0-brightgreen)  
 
-> *3.16 updated 
-fog distance probably don't work, but maphack will for leveling
+> *3.16 fully updated
 > 
 ========
 
