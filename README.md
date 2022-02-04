@@ -5,7 +5,7 @@
 ![](https://img.shields.io/badge/Maphack-3.16.0-brightgreen)  
 
 > *for 3.17 maphack rightclick on "Maphack [Shift + F6] and change the aobscanmodule for this line:
->aobscanmodule(MaphackRevealAob, PathOfExile.exe, 66 C7 47 58 00 00 C6 47 5A 00)
+> *aobscanmodule(MaphackRevealAob, PathOfExile.exe, 66 C7 47 58 00 00 C6 47 5A 00)
 >and it will work.. will update with a file soon. Have fun 3.17!
 > 
 ========
