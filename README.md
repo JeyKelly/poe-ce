@@ -2,7 +2,7 @@
 # poe-ce: Maphack, zoomhack, Light, and more  
 
 
-![](https://img.shields.io/badge/Maphack-3.16.0-brightgreen)  
+![](https://img.shields.io/badge/Maphack-3.17.0-brightgreen)  
 
 > 3.17 updated with no crash for zoomhack. Only use mouse wheel for zoom 
 
