@@ -4,9 +4,9 @@
 
 ![](https://img.shields.io/badge/Maphack-3.16.0-brightgreen)  
 
-> *for 3.17 maphack rightclick on "Maphack [Shift + F6] and change the aobscanmodule for this line:
-> *aobscanmodule(MaphackRevealAob, PathOfExile.exe, 66 C7 47 58 00 00 C6 47 5A 00)
->and it will work.. will update with a file soon. Have fun 3.17!
+> 3.17 updated with no crash for zoomhack. Only use mouse wheel for zoom 
+
+>To fix : the write allocation for the pointer distance fog disable needs to allow still too large. Find the proper place to allow distance fog disabling - it disables more than just the fog (messes with some textures and shaders too)
 > 
 ========
 
