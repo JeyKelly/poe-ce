@@ -480,7 +480,7 @@ aobscanmodule(DisableFogRender,PathOfExile.exe, 38 08 8B 42 10 0F 95 C1 42 89 0C
 alloc(newmem,$1000,"PathOfExile.exe")
 alloc(OldDisableFogRender, $4)
 
-FULLACCESS(PathOfExile.exe+200EF1A,35000)
+FULLACCESS(PathOfExile.exe+206464A,350000)
 
 
 registersymbol(OldDisableFogRender)
