@@ -252,7 +252,7 @@ PathOfExile.exe+4A23F8 - 81 FA 00000080        - cmp edx,80000000 { -2147483648 
 */
 
 [ENABLE]
-aobscanmodule(MaphackRevealAob, PathOfExile.exe, 66 C7 47 58 00 00 C6 47 5A 00)
+aobscanmodule(MaphackRevealAob, PathOfExile.exe, 66 C7 ?? 58 00 00 C6 ?? 5A 00)
 define(MaphackReveal, MaphackRevealAob+04)
 registersymbol(MaphackReveal)
 MaphackReveal:
