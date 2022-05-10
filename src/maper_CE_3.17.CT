@@ -190,7 +190,7 @@ PathOfExile_x64.exe+14A6DFA - F3 0F59 25 821BA500   - mulss xmm4,[PathOfExile_x6
 */
 
 [ENABLE]
-aobscanmodule(AlwaysShowHealthBars, PathOfExile.exe, 7C 6D 41 8B 88 EC 01 00 00)
+aobscanmodule(AlwaysShowHealthBars, PathOfExile.exe, 7C 6D 41 8B 88 ?? ?? 00 00)
 registersymbol(AlwaysShowHealthBars)
 AlwaysShowHealthBars:
    db EB
