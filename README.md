@@ -4,7 +4,7 @@
 
 ![](https://img.shields.io/badge/Maphack-3.18.0-brightgreen)  
 
-> 3.18 updated, no fog/light unfortunately :( (maphack and zoomhack works though!)
+> 3.18 updated, no fog/light unfortunately :( (maphack and zoomhack should work though! (still in the loading screen so who knows :p) )
 
 
 ========
