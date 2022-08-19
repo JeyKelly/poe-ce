@@ -6,8 +6,7 @@
 
 > 3.18 updated, no fog/light unfortunately :( (maphack and zoomhack works though!)
 
->To fix : the write allocation for the pointer distance fog disable needs to allow still too large. Find the proper place to allow distance fog disabling - it disables more than just the fog (messes with some textures and shaders too)
-> 
+
 ========
 
 ## Overview
