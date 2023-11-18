@@ -2,9 +2,9 @@
 # poe-ce: Maphack, zoomhack, Light, and more  
 
 
-![](https://img.shields.io/badge/Maphack-3.18.0-brightgreen)  
+![](https://img.shields.io/badge/Maphack-3.22.2-brightgreen)  
 
-> 3.18 updated, no fog/light unfortunately :( (maphack and zoomhack should work though! (still in the loading screen so who knows :p) )
+> 3.22.2 updated. Unfortunately only have permanent life bars, maphack and zoom.
 
 
 ========
