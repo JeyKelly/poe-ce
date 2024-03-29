@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Always Show Enemy Health Bars [Shift + F8] "</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>/*
+   Always Show Enemy Health Bars
+
+   - Updated by: jeykelly
+   - Version: 3.14.0
+   - https://github.com/JeyKelly/poe-ce
+        
+   - Updated by: zxc88645
+   - Version: 3.13.0
+   - https://github.com/zxc88645/poe-ce
+
+   - Updated by: maper
+   - Version: 3.11.1b
+   - https://github.com/m4p3r/poe-ce        
+*/
+
+
+[ENABLE]
+aobscanmodule(AlwaysShowHealthBars, PathOfExile.exe, 7C 1b 49 8B CE E8 )
+registersymbol(AlwaysShowHealthBars)
+AlwaysShowHealthBars:
+   db EB
+ 
+[DISABLE]
+AlwaysShowHealthBars:
+   db 7C
+unregistersymbol(AlwaysShowHealthBars)
+
+
+/* Contexte débogueur:
+PathOfExile.exe+4A23B0 - 66 0F6E CA            - movd xmm1,edx
+PathOfExile.exe+4A23B4 - 0F5B C9               - cvtdq2ps xmm1,xmm1
+PathOfExile.exe+4A23B7 - 44 2B 81 54020000     - sub r8d,[rcx+00000254]
+PathOfExile.exe+4A23BE - F3 0F2C C1            - cvttss2si eax,xmm1
+PathOfExile.exe+4A23C2 - 44 2B C0              - sub r8d,eax
+PathOfExile.exe+4A23C5 - 45 0F48 C7            - cmovs r8d,r15d
+PathOfExile.exe+4A23C9 - 44 39 81 50020000     - cmp [rcx+00000250],r8d
+PathOfExile.exe+4A23D0 - 7C 6A                 - jl PathOfExile.exe+4A243C
+PathOfExile.exe+4A23D2 - 44 8B 81 EC010000     - mov r8d,[rcx+000001EC]
+PathOfExile.exe+4A23D9 - 66 0F6E 89 F8010000   - movd xmm1,[rcx+000001F8]
+PathOfExile.exe+4A23E1 - 0F5B C9               - cvtdq2ps xmm1,xmm1
+PathOfExile.exe+4A23E4 - 66 41 0F6E C0         - movd xmm0,r8d
+PathOfExile.exe+4A23E9 - 0F5B C0               - cvtdq2ps xmm0,xmm0
+PathOfExile.exe+4A23EC - F3 0F59 C8            - mulss xmm1,xmm0
+PathOfExile.exe+4A23F0 - F3 0F59 CA            - mulss xmm1,xmm2
+PathOfExile.exe+4A23F4 - F3 0F2C D1            - cvttss2si edx,xmm1
+PathOfExile.exe+4A23F8 - 81 FA 00000080        - cmp edx,80000000 { -2147483648 }
+
+*/
+
+/* 3.20
+PathOfExile.exe+1D3ABB - 8B 8F 9C010000        - mov ecx,[rdi+0000019C]
+PathOfExile.exe+1D3AC1 - 2B C8                 - sub ecx,eax
+PathOfExile.exe+1D3AC3 - 41 0F48 CF            - cmovs ecx,r15d
+PathOfExile.exe+1D3AC7 - 39 8F A0010000        - cmp [rdi+000001A0],ecx
+PathOfExile.exe+1D3ACD - 7C 1A                 - jl PathOfExile.exe+1D3AE9
+PathOfExile.exe+1D3ACF - 48 8B CE              - mov rcx,rsi
+PathOfExile.exe+1D3AD2 - E8 E9 C8 FA FF         - call PathOfExile.exe+1803C0
+PathOfExile.exe+1D3AD7 - 8B 4E 2C              - mov ecx,[rsi+2C]
+PathOfExile.exe+1D3ADA - 2B C8                 - sub ecx,eax
+PathOfExile.exe+1D3ADC - 41 0F48 CF            - cmovs ecx,r15d
+PathOfExile.exe+1D3AE0 - 39 4E 30              - cmp [rsi+30],ecx
+PathOfExile.exe+1D3AE3 - 7C 04                 - jl PathOfExile.exe+1D3AE9
+PathOfExile.exe+1D3AE5 - B2 01                 - mov dl,01 { 1 }
+*/
+
+/* 3.23  -- found it with 7c ?? ?? 8b CE E8
+PathOfExile.exe+1D412C - 2B C8                 - sub ecx,eax
+PathOfExile.exe+1D412E - 0F48 CB               - cmovs ecx,ebx
+PathOfExile.exe+1D4131 - 39 4D 30              - cmp [rbp+30],ecx
+PathOfExile.exe+1D4134 - 7C 1B                 - jmp PathOfExile.exe+1D4151
+PathOfExile.exe+1D4136 - 49 8B CE              - mov rcx,r14
+PathOfExile.exe+1D4139 - E8 8237FDFF           - call PathOfExile.exe+1A78C0
+PathOfExile.exe+1D413E - 41 8B 4E 2C           - mov ecx,[r14+2C]
+PathOfExile.exe+1D4142 - 2B C8                 - sub ecx,eax
+PathOfExile.exe+1D4144 - 0F48 CB               - cmovs ecx,ebx
+PathOfExile.exe+1D4147 - 41 39 4E 30           - cmp [r14+30],ecx
+PathOfExile.exe+1D414B - 7C 04                 - jl PathOfExile.exe+1D4151
+PathOfExile.exe+1D414D - B2 01                 - mov dl,01 { 1 }
+*/
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>16</Key>
+            <Key>119</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Maphack [Shift + F6] "</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>/*
+   Maphack
+
+   - Updated by: jeykelly
+   - Version: 3.14.0
+   - https://github.com/JeyKelly/poe-ce
+        
+   - Updated by: zxc88645
+   - Version: 3.13.0
+   - https://github.com/zxc88645/poe-ce
+*/
+
+
+[ENABLE]
+// 66 C7 47 5C 0000
+aobscanmodule(MaphackRevealAob, PathOfExile.exe, 66 ?? ?? ?? 0000 C6 ?? ?? 00 C6 )
+define(MaphackReveal, MaphackRevealAob+04)
+registersymbol(MaphackReveal)
+MaphackReveal:
+   db 02
+
+[DISABLE]
+MaphackReveal:
+   db 00
+unregistersymbol(MaphackReveal)
+
+/* Ligne de code à éditer : dernier bit changer 00 pour 01: */
+//PathOfExile_x64.exe+143EB00 - 66 C7 46 70 0000      - mov word ptr [rsi+70],0000 { 0 }
+
+/* Contexte de débogueur pour cette région: */
+/*
+PathOfExile.exe+1C5730F - 4C 8B 86 D0000000     - mov r8,[rsi+000000D0]
+PathOfExile.exe+1C57316 - 33 D2                 - xor edx,edx
+PathOfExile.exe+1C57318 - 49 8B CE              - mov rcx,r14
+PathOfExile.exe+1C5731B - FF 50 50              - call qword ptr [rax+50]
+PathOfExile.exe+1C5731E - 49 8B 06              - mov rax,[r14]
+PathOfExile.exe+1C57321 - 45 33 C0              - xor r8d,r8d
+PathOfExile.exe+1C57324 - 41 8D 50 04           - lea edx,[r8+04]
+PathOfExile.exe+1C57328 - 49 8B CE              - mov rcx,r14
+PathOfExile.exe+1C5732B - FF 50 58              - call qword ptr [rax+58]
+PathOfExile.exe+1C5732E - 49 8B 06              - mov rax,[r14]
+PathOfExile.exe+1C57331 - 49 8B CE              - mov rcx,r14
+PathOfExile.exe+1C57334 - FF 50 20              - call qword ptr [rax+20]
+PathOfExile.exe+1C57337 - 66 C7 46 58 0000      - mov word ptr [rsi+58],0000 { 0 }
+PathOfExile.exe+1C5733D - C6 46 5A 00           - mov byte ptr [rsi+5A],00 { 0 }
+PathOfExile.exe+1C57341 - C6 46 64 00           - mov byte ptr [rsi+64],00 { 0 }
+PathOfExile.exe+1C57345 - C6 46 78 00           - mov byte ptr [rsi+78],00 { 0 }
+PathOfExile.exe+1C57349 - 4C 8D 9C 24 88040000  - lea r11,[rsp+00000488]
+PathOfExile.exe+1C57351 - 41 0F28 73 E8         - movaps xmm6,[r11-18]
+PathOfExile.exe+1C57356 - 41 0F28 7B D8         - movaps xmm7,[r11-28]
+PathOfExile.exe+1C5735B - 45 0F28 43 C8         - movaps xmm8,[r11-38]
+PathOfExile.exe+1C57360 - 49 8B E3              - mov rsp,r11
+PathOfExile.exe+1C57363 - 41 5F                 - pop r15
+PathOfExile.exe+1C57365 - 41 5E                 - pop r14
+
+*/
+
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>16</Key>
+            <Key>117</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"Zoomhack"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>/*
+   Maphack
+
+   - Updated by: jeykelly
+   - Version: 3.14.0
+   - https://github.com/JeyKelly/poe-ce
+        
+   - Updated by: zxc88645
+   - Version: 3.13.0
+   - https://github.com/zxc88645/poe-ce
+*/
+
+
+
+[ENABLE]
+aobscanmodule(ZoomLimitAob, PathOfExile.exe, F3 0F 5D 0D ?? ?? A2 02)
+define(ZoomLimitAobStart, ZoomLimitAob)
+
+ZoomLimitAobStart:
+   nop 8
+
+
+[DISABLE]
+ZoomLimitAobStart:
+   minss xmm1,[PathOfExile.exe+2B1E64C]
+
+
+/* Ligne de code à éditer : dernier bit changer 00 pour 01: */
+//PathOfExile_x64.exe+143EB00 - 66 C7 46 70 0000      - mov word ptr [rsi+70],0000 { 0 }
+
+/* Contexte de débogueur pour cette région: */
+/*
+PathOfExile.exe+1C5730F - 4C 8B 86 D0000000     - mov r8,[rsi+000000D0]
+PathOfExile.exe+1C57316 - 33 D2                 - xor edx,edx
+PathOfExile.exe+1C57318 - 49 8B CE              - mov rcx,r14
+PathOfExile.exe+1C5731B - FF 50 50              - call qword ptr [rax+50]
+PathOfExile.exe+1C5731E - 49 8B 06              - mov rax,[r14]
+PathOfExile.exe+1C57321 - 45 33 C0              - xor r8d,r8d
+PathOfExile.exe+1C57324 - 41 8D 50 04           - lea edx,[r8+04]
+PathOfExile.exe+1C57328 - 49 8B CE              - mov rcx,r14
+PathOfExile.exe+1C5732B - FF 50 58              - call qword ptr [rax+58]
+PathOfExile.exe+1C5732E - 49 8B 06              - mov rax,[r14]
+PathOfExile.exe+1C57331 - 49 8B CE              - mov rcx,r14
+PathOfExile.exe+1C57334 - FF 50 20              - call qword ptr [rax+20]
+PathOfExile.exe+1C57337 - 66 C7 46 58 0000      - mov word ptr [rsi+58],0000 { 0 }
+PathOfExile.exe+1C5733D - C6 46 5A 00           - mov byte ptr [rsi+5A],00 { 0 }
+PathOfExile.exe+1C57341 - C6 46 64 00           - mov byte ptr [rsi+64],00 { 0 }
+PathOfExile.exe+1C57345 - C6 46 78 00           - mov byte ptr [rsi+78],00 { 0 }
+PathOfExile.exe+1C57349 - 4C 8D 9C 24 88040000  - lea r11,[rsp+00000488]
+PathOfExile.exe+1C57351 - 41 0F28 73 E8         - movaps xmm6,[r11-18]
+PathOfExile.exe+1C57356 - 41 0F28 7B D8         - movaps xmm7,[r11-28]
+PathOfExile.exe+1C5735B - 45 0F28 43 C8         - movaps xmm8,[r11-38]
+PathOfExile.exe+1C57360 - 49 8B E3              - mov rsp,r11
+PathOfExile.exe+1C57363 - 41 5F                 - pop r15
+PathOfExile.exe+1C57365 - 41 5E                 - pop r14
+
+*/
+
+//max zoom = 1, min zoom = 0
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>16</Key>
+            <Key>117</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"Other Client Support (check one of these if you use them)"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>10</ID>
+          <Description>"Kakao"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>/*
+If you're using the Kakao client you must enable this.
+*/
+
+[ENABLE]
+label(PathOfExile_x64.exe)
+registersymbol(PathOfExile_x64.exe)
+PathOfExile_x64_KG.exe:
+PathOfExile_x64.exe:
+
+[DISABLE]
+unregistersymbol(PathOfExile_x64.exe)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>9</ID>
+          <Description>"Steam"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>/*
+If you're using the Steam client you must enable this.
+*/
+
+[ENABLE]
+label(PathOfExile_x64.exe)
+registersymbol(PathOfExile_x64.exe)
+PathOfExile_x64Steam.exe:
+PathOfExile_x64.exe:
+
+[DISABLE]
+unregistersymbol(PathOfExile_x64.exe)
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1EF8F910850</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1EF8F910858</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Change of comiss xmm2,[rcx]</Description>
+      <AddressString>PathOfExile.exe+717D14</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>8D</Byte>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>2F</Byte>
+        <Byte>11</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>0F</Byte>
+        <Byte>43</Byte>
+        <Byte>C1</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of jb PathOfExile.exe+48D341</Description>
+      <AddressString>PathOfExile.exe+48D32E</AddressString>
+      <Before>
+        <Byte>1F</Byte>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>FA</Byte>
+        <Byte>08</Byte>
+      </Before>
+      <Actual>
+        <Byte>72</Byte>
+        <Byte>11</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8D</Byte>
+        <Byte>14</Byte>
+        <Byte>55</Byte>
+        <Byte>02</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov word ptr [rsi+24],0011</Description>
+      <AddressString>PathOfExile.exe+140F415</AddressString>
+      <Before>
+        <Byte>8B</Byte>
+        <Byte>00</Byte>
+        <Byte>89</Byte>
+        <Byte>46</Byte>
+        <Byte>20</Byte>
+      </Before>
+      <Actual>
+        <Byte>66</Byte>
+        <Byte>C7</Byte>
+        <Byte>46</Byte>
+        <Byte>24</Byte>
+        <Byte>11</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>89</Byte>
+        <Byte>74</Byte>
+        <Byte>24</Byte>
+        <Byte>70</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of mov byte ptr [rsi],01</Description>
+      <AddressString>PathOfExile.exe+F249D</AddressString>
+      <Before>
+        <Byte>8F</Byte>
+        <Byte>48</Byte>
+        <Byte>04</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C6</Byte>
+        <Byte>06</Byte>
+        <Byte>01</Byte>
+      </Actual>
+      <After>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+        <Byte>28</Byte>
+        <Byte>44</Byte>
+        <Byte>24</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of movss [rdi+00000448],xmm1</Description>
+      <AddressString>PathOfExile.exe+F2495</AddressString>
+      <Before>
+        <Byte>0D</Byte>
+        <Byte>B7</Byte>
+        <Byte>C1</Byte>
+        <Byte>A2</Byte>
+        <Byte>02</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>8F</Byte>
+        <Byte>48</Byte>
+        <Byte>04</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C6</Byte>
+        <Byte>06</Byte>
+        <Byte>01</Byte>
+        <Byte>44</Byte>
+        <Byte>0F</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of maxss xmm1,xmm0</Description>
+      <AddressString>PathOfExile.exe+F2489</AddressString>
+      <Before>
+        <Byte>8F</Byte>
+        <Byte>48</Byte>
+        <Byte>04</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5F</Byte>
+        <Byte>C8</Byte>
+      </Actual>
+      <After>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5D</Byte>
+        <Byte>0D</Byte>
+        <Byte>B7</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of minss xmm1,[PathOfExile.exe+2B1E64C]</Description>
+      <AddressString>PathOfExile.exe+F248D</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5F</Byte>
+        <Byte>C8</Byte>
+      </Before>
+      <Actual>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>5D</Byte>
+        <Byte>0D</Byte>
+        <Byte>B7</Byte>
+        <Byte>C1</Byte>
+        <Byte>A2</Byte>
+        <Byte>02</Byte>
+      </Actual>
+      <After>
+        <Byte>F3</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>8F</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Comments>Info about this table:
+</Comments>
+  <LuaScript>function poeattach(timer)
+  if getProcessIDFromProcessName("PathOfExile.exe") ~= nil then
+    object_destroy(timer)
+    openProcess("PathOfExile.exe")
+  end
+end
+
+t=createTimer(nil);
+timer_setInterval(t,10)
+timer_onTimer(t,poeattach)
+</LuaScript>
+</CheatTable>
