@@ -2,9 +2,9 @@
 # poe-ce: Maphack, zoomhack, Light, and more  
 
 
-![](https://img.shields.io/badge/Maphack-3.22.2-brightgreen)  
+![](https://img.shields.io/badge/Maphack-3.24-brightgreen)  
 
-> 3.22.2 updated. Unfortunately only have permanent life bars, maphack and zoom.
+> 3.24 updated. Maphack, zoomhack and monsters hp bars. Not 100% sure it works as it can't be tested yet. enjoy
 
 
 ========
