@@ -4,7 +4,7 @@
 
 ![](https://img.shields.io/badge/Maphack-3.24-brightgreen)  
 
-> 3.24 updated. Maphack, zoomhack and monsters hp bars. Not 100% sure it works as it can't be tested yet. enjoy
+> 3.24 updated. zoomhack and monsters hp bars. Couldn't fix maphack yet
 
 
 ========
