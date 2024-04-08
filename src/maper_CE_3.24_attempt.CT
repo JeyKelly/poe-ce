@@ -191,7 +191,7 @@ PathOfExile.exe+1C57365 - 41 5E                 - pop r14
 
 
 [ENABLE]
-aobscanmodule(ZoomLimitAob, PathOfExile.exe, F3 0F 5D 0D 23 22 B3 02)
+aobscanmodule(ZoomLimitAob, PathOfExile.exe, F3 0F 5D 0D ? ? B3 02)
 define(ZoomLimitAobStart, ZoomLimitAob)
 
 ZoomLimitAobStart:
@@ -200,7 +200,7 @@ ZoomLimitAobStart:
 
 [DISABLE]
 ZoomLimitAobStart:
-   minss xmm1,[PathOfExile.exe+2C31DB68]
+   nop 8
 
 
 
