@@ -2,6 +2,64 @@
 <CheatTable CheatEngineTableVersion="42">
   <CheatEntries>
     <CheatEntry>
+      <ID>15</ID>
+      <Description>"LightHack"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(IncreasePlayerLightAob, PathOfExile.exe, F3 0F10 9F 84020000)
+define(IncreasePlayerLight, IncreasePlayerLightAob)
+define(IncreasePlayerLightReturn, IncreasePlayerLightAob+4)
+alloc(IncreasePlayerLightOriginal, $5)
+alloc(Handler, $1500, IncreasePlayerLight)
+registersymbol(IncreasePlayerLight)
+registersymbol(IncreasePlayerLightOriginal)
+registersymbol(IncreasePlayerLightReturn)
+
+registersymbol(Intensity)
+label(Intensity)
+
+IncreasePlayerLightOriginal:
+   readmem(IncreasePlayerLight, 5)
+
+Handler:
+movss xmm3,[rdi+00000284]
+addss xmm3,[Intensity]
+
+jmp IncreasePlayerLightReturn
+
+Intensity:
+   dd (float)2000.0
+
+IncreasePlayerLight:
+   jmp Handler
+
+[DISABLE]
+IncreasePlayerLight:
+   readmem(IncreasePlayerLightOriginal, 5)
+unregistersymbol(IncreasePlayerLight)
+unregistersymbol(IncreasePlayerLightOriginal)
+unregistersymbol(IncreasePlayerLightReturn)
+
+
+unregistersymbol(Intensity)
+
+dealloc(IncreasePlayerLightOriginal)
+dealloc(Handler)
+
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>16</Key>
+            <Key>117</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
       <ID>2</ID>
       <Description>"Always Show Enemy Health Bars [Shift + F8] "</Description>
       <VariableType>Auto Assembler Script</VariableType>
@@ -23,7 +81,7 @@
 
 
 [ENABLE]
-aobscanmodule(AlwaysShowHealthBars, PathOfExile.exe, 7C 1b 49 8B CE E8 52 32 FD )
+aobscanmodule(AlwaysShowHealthBars, PathOfExile.exe, 7C 1b 49 8B CE E8)
 registersymbol(AlwaysShowHealthBars)
 AlwaysShowHealthBars:
    db EB
@@ -117,7 +175,7 @@ PathOfExile.exe+1D414D - B2 01                 - mov dl,01 { 1 }
 
 [ENABLE]
 // 66 C7 47 5C 0000
-aobscanmodule(MaphackRevealAob, PathOfExile.exe, 66 ?? ?? ?? 0000 C6 ?? ?? 00 C6 )
+aobScanRegion(MaphackRevealAob, PathOfExile.exe+10065E7, PathOfExile.exe+23398CA, 66 C7 ?? ?? 0000 )
 define(MaphackReveal, MaphackRevealAob+04)
 registersymbol(MaphackReveal)
 MaphackReveal:
@@ -125,7 +183,7 @@ MaphackReveal:
 
 [DISABLE]
 MaphackReveal:
-   db 00
+   db 0F
 unregistersymbol(MaphackReveal)
 
 /* Ligne de code à éditer : dernier bit changer 00 pour 01: */
@@ -188,8 +246,6 @@ PathOfExile.exe+1C57365 - 41 5E                 - pop r14
    - https://github.com/zxc88645/poe-ce
 */
 
-
-
 [ENABLE]
 aobscanmodule(ZoomLimitAob, PathOfExile.exe, F3 0F 5D 0D ? ? B3 02)
 define(ZoomLimitAobStart, ZoomLimitAob)
@@ -200,8 +256,7 @@ ZoomLimitAobStart:
 
 [DISABLE]
 ZoomLimitAobStart:
-   nop 8
-
+   minss xmm1,[PathOfExile.exe+2C31DB68]
 
 
 /* Ligne de code à éditer : dernier bit changer 00 pour 01: */
@@ -291,195 +346,7 @@ unregistersymbol(PathOfExile_x64.exe)
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
-    <CheatEntry>
-      <ID>14</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>1EF8F910850</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>15</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>1EF8F910858</Address>
-    </CheatEntry>
   </CheatEntries>
-  <CheatCodes>
-    <CodeEntry>
-      <Description>Change of comiss xmm2,[rcx]</Description>
-      <AddressString>PathOfExile.exe+717D14</AddressString>
-      <Before>
-        <Byte>48</Byte>
-        <Byte>8D</Byte>
-        <Byte>44</Byte>
-        <Byte>24</Byte>
-        <Byte>20</Byte>
-      </Before>
-      <Actual>
-        <Byte>0F</Byte>
-        <Byte>2F</Byte>
-        <Byte>11</Byte>
-      </Actual>
-      <After>
-        <Byte>48</Byte>
-        <Byte>0F</Byte>
-        <Byte>43</Byte>
-        <Byte>C1</Byte>
-        <Byte>8B</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>Change of jb PathOfExile.exe+48D341</Description>
-      <AddressString>PathOfExile.exe+48D32E</AddressString>
-      <Before>
-        <Byte>1F</Byte>
-        <Byte>48</Byte>
-        <Byte>83</Byte>
-        <Byte>FA</Byte>
-        <Byte>08</Byte>
-      </Before>
-      <Actual>
-        <Byte>72</Byte>
-        <Byte>11</Byte>
-      </Actual>
-      <After>
-        <Byte>48</Byte>
-        <Byte>8D</Byte>
-        <Byte>14</Byte>
-        <Byte>55</Byte>
-        <Byte>02</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>Change of mov word ptr [rsi+24],0011</Description>
-      <AddressString>PathOfExile.exe+140F415</AddressString>
-      <Before>
-        <Byte>8B</Byte>
-        <Byte>00</Byte>
-        <Byte>89</Byte>
-        <Byte>46</Byte>
-        <Byte>20</Byte>
-      </Before>
-      <Actual>
-        <Byte>66</Byte>
-        <Byte>C7</Byte>
-        <Byte>46</Byte>
-        <Byte>24</Byte>
-        <Byte>11</Byte>
-        <Byte>00</Byte>
-      </Actual>
-      <After>
-        <Byte>48</Byte>
-        <Byte>89</Byte>
-        <Byte>74</Byte>
-        <Byte>24</Byte>
-        <Byte>70</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>Change of mov byte ptr [rsi],01</Description>
-      <AddressString>PathOfExile.exe+F249D</AddressString>
-      <Before>
-        <Byte>8F</Byte>
-        <Byte>48</Byte>
-        <Byte>04</Byte>
-        <Byte>00</Byte>
-        <Byte>00</Byte>
-      </Before>
-      <Actual>
-        <Byte>C6</Byte>
-        <Byte>06</Byte>
-        <Byte>01</Byte>
-      </Actual>
-      <After>
-        <Byte>44</Byte>
-        <Byte>0F</Byte>
-        <Byte>28</Byte>
-        <Byte>44</Byte>
-        <Byte>24</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>Change of movss [rdi+00000448],xmm1</Description>
-      <AddressString>PathOfExile.exe+F2495</AddressString>
-      <Before>
-        <Byte>0D</Byte>
-        <Byte>B7</Byte>
-        <Byte>C1</Byte>
-        <Byte>A2</Byte>
-        <Byte>02</Byte>
-      </Before>
-      <Actual>
-        <Byte>F3</Byte>
-        <Byte>0F</Byte>
-        <Byte>11</Byte>
-        <Byte>8F</Byte>
-        <Byte>48</Byte>
-        <Byte>04</Byte>
-        <Byte>00</Byte>
-        <Byte>00</Byte>
-      </Actual>
-      <After>
-        <Byte>C6</Byte>
-        <Byte>06</Byte>
-        <Byte>01</Byte>
-        <Byte>44</Byte>
-        <Byte>0F</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>Change of maxss xmm1,xmm0</Description>
-      <AddressString>PathOfExile.exe+F2489</AddressString>
-      <Before>
-        <Byte>8F</Byte>
-        <Byte>48</Byte>
-        <Byte>04</Byte>
-        <Byte>00</Byte>
-        <Byte>00</Byte>
-      </Before>
-      <Actual>
-        <Byte>F3</Byte>
-        <Byte>0F</Byte>
-        <Byte>5F</Byte>
-        <Byte>C8</Byte>
-      </Actual>
-      <After>
-        <Byte>F3</Byte>
-        <Byte>0F</Byte>
-        <Byte>5D</Byte>
-        <Byte>0D</Byte>
-        <Byte>B7</Byte>
-      </After>
-    </CodeEntry>
-    <CodeEntry>
-      <Description>Change of minss xmm1,[PathOfExile.exe+2B1E64C]</Description>
-      <AddressString>PathOfExile.exe+F248D</AddressString>
-      <Before>
-        <Byte>00</Byte>
-        <Byte>F3</Byte>
-        <Byte>0F</Byte>
-        <Byte>5F</Byte>
-        <Byte>C8</Byte>
-      </Before>
-      <Actual>
-        <Byte>F3</Byte>
-        <Byte>0F</Byte>
-        <Byte>5D</Byte>
-        <Byte>0D</Byte>
-        <Byte>B7</Byte>
-        <Byte>C1</Byte>
-        <Byte>A2</Byte>
-        <Byte>02</Byte>
-      </Actual>
-      <After>
-        <Byte>F3</Byte>
-        <Byte>0F</Byte>
-        <Byte>11</Byte>
-        <Byte>8F</Byte>
-        <Byte>48</Byte>
-      </After>
-    </CodeEntry>
-  </CheatCodes>
   <UserdefinedSymbols/>
   <Comments>Info about this table:
 </Comments>
